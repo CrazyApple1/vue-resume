@@ -1,0 +1,90 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-size: 33.75px;
+    outline: none;
+}
+html,
+body {
+    height: 100%;
+}
+input::-webkit-input-placeholder {
+    color: #ccc;
+}
+input::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: #ccc;
+}
+input:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: #ccc;
+}
+input:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: #ccc;
+}
+li {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+}
+img {
+    vertical-align: middle;
+}
+body {
+    background: #fff;
+    font-family: Arial, '微软雅黑', Helvetica Neue, Helvetica, sans-serif;
+}
+//清浮动
+.clear:after {
+    content: ''; //设置内容为空
+    height: 0; //高度为0
+    line-height: 0; //行高为0
+    display: block; //将文本转为块级元素
+    visibility: hidden; //将元素隐藏
+    clear: both//清除浮动;
+}
+.clear {
+    zoom: 1; //为了兼容IE
+}
+.ellipsis {
+    //一行多出省略号
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+#app .mint-popup {
+    width: 100%;
+}
+
+// 修改placeholder的颜色
+// ::-moz-placeholder{color:#ddd;}                   //ff
+// ::-webkit-input-placeholder{color:#ddd;}     //chrome,safari
+// :-ms-input-placeholder{color:#ddd;}   
+input::-webkit-input-placeholder{
+    color:#ddd;
+}
+input::-moz-placeholder{   /* Mozilla Firefox 19+ */
+    color:#ddd;
+}
+input:-moz-placeholder{    /* Mozilla Firefox 4 to 18 */
+    color:#ddd;
+}
+input:-ms-input-placeholder{  /* Internet Explorer 10-11 */ 
+    color:#ddd;
+}
+
+.buts-gradient{
+    filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr='#6DB9E1', endColorStr='#99E4F0', gradientType='1');
+    background: -moz-linear-gradient(left, #6DB9E1, #99E4F0);
+    background: -o-linear-gradient(left, #6DB9E1, #99E4F0);
+    background: -webkit-gradient(linear, 0% 0%, 100% 0%, from(#6DB9E1), to(#99E4F0));
+}
+.pink-gradient{
+    filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr='#EB8E73', endColorStr='#F3B689', gradientType='1');
+    background: -moz-linear-gradient(left, #EB8E73, #F3B689);
+    background: -o-linear-gradient(left, #EB8E73, #F3B689);
+    background: -webkit-gradient(linear, 0% 0%, 100% 0%, from(#EB8E73), to(#F3B689));
+}

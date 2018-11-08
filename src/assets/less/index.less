@@ -1,0 +1,66 @@
+@import './base.less';
+@import './header.less';
+// 日历插件
+
+.datetime-part {
+    .picker-toolbar {
+        height: 94px;
+        background: #f3f3f3;
+        .mint-datetime-action {
+            display: block;
+            width: 130px;
+            text-align: center;
+            color: #73bde2;
+            font-size: 30px;
+            line-height: 94px;
+        }
+        .mint-datetime-action:active {
+            color: #65b9c9;
+        }
+    }
+}
+.year-part {
+    .picker-slot {
+        display: none;
+    }
+    .picker-slot:first-child {
+        display: block;
+    }
+}
+
+.picker-center-highlight:after,
+.picker-center-highlight:before {
+    height: 2px !important;
+}
+
+//toast样式
+.mint-toast .mint-toast-text {
+    font-size: 30px;
+}
+// indicator样式
+.mint-indicator-wrapper {
+    .mint-spinner-snake {
+        border-width: 5px !important;
+    }
+}
+// massageBox样式
+.mint-msgbox{
+    border-radius: 16px;
+    .mint-msgbox-content{
+        padding: 50px;
+        .mint-msgbox-message{
+            font-size: 36px;
+        }
+    }
+    .mint-msgbox-btns{
+        height: 80px;
+        line-height: 80px;
+        .mint-msgbox-btn{
+            height: 80px;
+            line-height: 80px;
+        }
+        .mint-msgbox-cancel{
+            border-right: 2px solid #ddd!important;
+        }
+    }
+}
