@@ -31,13 +31,13 @@ vue2+router+webpack4+less+svg+mint-ui+es6/7
 ### 项目运行
 
 ```
-git clone https://github.com/bailichen/vue-weixin.git
+git clone https://github.com/bailichen/vue-resume.git
 
 cd vue-weixin
 
 npm install
 
-npm run dev (访问本地，运行后访问 http://localhost:8882)
+npm run start
 
 ```
 
