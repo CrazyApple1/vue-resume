@@ -35,6 +35,7 @@ export default {
         }
     },
     created() {
+        this.imgSrc = require('@/assets/image/blue_h5_page.png')
         this.getResumeData();
     },
     mounted() {},
@@ -46,7 +47,7 @@ export default {
                 }
             }).then( res =>{
                 if( res.code === 0){
-                    this.imgSrc = res.data.banner_img;
+                    // this.imgSrc = res.data.banner_img;
                     this.status = res.data.status
                     this.ruleData = res.data.rules
                     localStorage.setItem('resumeId',res.data.sharer_id)

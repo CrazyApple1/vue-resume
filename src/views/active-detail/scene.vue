@@ -31,6 +31,7 @@ export default {
         }
     },
     created() {
+        this.imageSrc = require('@/assets/image/orange_page@2x.png')
         this.activeId = this.$route.query.id
         this.getRuleData()
     },
@@ -46,7 +47,7 @@ export default {
                 .then(res => {
                     if (res.code === 0) {
                         this.ruleData = res.data.rules
-                        this.imageSrc = res.data.banner_img
+                        
                     }
                 })
         },
