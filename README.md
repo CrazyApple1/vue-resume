@@ -44,8 +44,8 @@ npm run start
 
 # 页面部分截图
 
-<img src="https://github.com/bailichen/vue-weixin/raw/master/src/assets/image/1.png" width="300" height="530" alt=""> 
-<img src="https://github.com/bailichen/vue-weixin/raw/master/src/assets/image/2.png" width="300" height="530" alt=""> 
-<img src="https://github.com/bailichen/vue-weixin/raw/master/src/assets/image/3.png" width="300" height="530" alt=""> 
-<img src="https://github.com/bailichen/vue-weixin/raw/master/src/assets/image/4.png" width="300" height="530" alt=""> 
+<img src="https://github.com/bailichen/vue-resume/raw/master/printscreen/1.png" width="300" height="530" alt=""/>
+<img src="https://github.com/bailichen/vue-resume/raw/master/printscreen/2.jpg" width="300" height="530" alt=""> 
+<img src="https://github.com/bailichen/vue-resume/raw/master/printscreen/3.jpg" width="300" height="530" alt=""> 
+<img src="https://github.com/bailichen/vue-resume/raw/master/printscreen/4.jpg" width="300" height="530" alt=""> 
 
