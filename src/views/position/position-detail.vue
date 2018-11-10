@@ -15,7 +15,7 @@
             </div>
             <div class="pb-name">
                 <div class="pb-head">
-                    <img :src="job_details.company_logo"
+                    <img src="../../assets/image/head.jpg"
                          alt="" />
                 </div>
                 <span class="ellipsis">{{job_details.company_name}}</span>
@@ -60,7 +60,7 @@
             <h1 class="position-title">企业详情</h1>
             <section class="company-cotent">
                 <div class="company-cotent-top clear">
-                    <img :src="job_details.company_logo"
+                    <img src="../../assets/image/head.jpg"
                          alt="" />
                     <div>
                         <p class="company-name">{{job_details.company_name}}</p>
@@ -109,7 +109,7 @@ export default {
             downShow: false, // 头部提示下载app
             swipeShow: false, // 图片轮播
             deIndex: 0,
-            comImg: [],
+            comImg: [require('@/assets/image/1.jpg'),require('@/assets/image/2.jpg'),require('@/assets/image/3.jpg')],
             askData: [
                 {
                     img: require('@/assets/image/icon_details_age@2x.png'),
@@ -145,7 +145,7 @@ export default {
                 .then(res => {
                     if (res.code === 0) {
                         this.shareData = res.data
-                        this.comImg = res.data.job_environment;
+                        // this.comImg = res.data.job_environment;
                         this.job_details = res.data.job_details
                         this.buling = res.data.job_details.tags
                         this.askData[0].name = res.data.job_details.age_scope

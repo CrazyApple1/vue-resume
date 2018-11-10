@@ -98,7 +98,7 @@
                     <button href="javascript:;"
                             v-if="show"
                             @click="clickcode"
-                            :disabled="isDisable">{{getcodetext}}
+                            :disabled="isDisable">{{getcodetext}}(默认:123456)
                     </button>
                     <button href="javascript:;"
                             v-else>{{count}}s</button>
@@ -257,7 +257,7 @@ export default {
     },
     created() {
         this.getEducation()
-        this.queryChoose()
+        this.queryChoose();
     },
     beforeRouteLeave(to, from, next) {
         this.removeItemPart()
@@ -267,6 +267,7 @@ export default {
         this.removeItemPart()
     },
     methods: {
+
         removeItemPart() {
             localStorage.removeItem('expect')
             localStorage.removeItem('newArry')
@@ -374,14 +375,14 @@ export default {
         clickcode() {
             //发送验证码
             if (this.testTel()) {
-                this.isDisable = true
-                this.$api
-                    .captchaSend({
-                        mobile: this.telphone.replace(/\s+/g, '')
-                    })
-                    .then(res => {
-                        this.isDisable = false
-                        if (res.code === 0) {
+                // this.isDisable = true
+                // this.$api
+                //     .captchaSend({
+                //         mobile: this.telphone.replace(/\s+/g, '')
+                //     })
+                //     .then(res => {
+                        // this.isDisable = false
+                        // if (res.code === 0) {
                             Toast('发送成功')
                             const TIME_COUNT = 60
                             if (!this.timer) {
@@ -401,8 +402,8 @@ export default {
                                     }
                                 }, 1000)
                             }
-                        }
-                    })
+                        // }
+                    // })
             }
         },
         childBack(value) {

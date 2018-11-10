@@ -62,6 +62,7 @@ export default {
     methods: {
         resumeJob() {
             this.$api.resumeJob().then(res => {
+                console.log(res);
                 if (res.code === 0) {
                     this.position = res.data
                 }
