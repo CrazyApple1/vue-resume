@@ -102,6 +102,7 @@
                     </button>
                     <button href="javascript:;"
                             v-else>{{count}}s</button>
+
                 </div>
             </section>
             <section class="submit-fix">
@@ -110,20 +111,23 @@
             </section>
         </section>
 
-        <!-- 日历 -->
+        <!-- 生日 -->
         <mt-datetime-picker v-model="pickerVisible"
-                            @touchmove.prevent
                             class="datetime-part"
+                            @touchmove.prevent
                             ref="picker"
                             type="date"
+                            :closeOnClickModal="closeOnClickModal"
                             year-format="{value} 年"
                             month-format="{value} 月"
                             date-format="{value} 日"
                             :startDate="startDate"
-                            @confirm="handleConfirm">
+                            @confirm="handleConfirm"
+                            @cancel="checkinCancel">
         </mt-datetime-picker>
         <mt-datetime-picker v-model="workVisible"
                             @touchmove.prevent
+                            :closeOnClickModal="closeOnClickModal"
                             class="datetime-part year-part"
                             ref="workPicker"
                             type="date"
@@ -131,11 +135,13 @@
                             month-format="{value} 月"
                             date-format="{value} 日"
                             :startDate="startDate"
-                            @confirm="handleConfirmWork">
+                            @confirm="handleConfirmWork"
+                            @cancel="checkinCancel">
         </mt-datetime-picker>
         <!-- 性别和学历选择 -->
         <mt-popup v-if="popupSex"
                   class="popup-sex"
+                  :closeOnClickModal="closeOnClickModal"
                   v-model="popupSex"
                   @touchmove.prevent
                   position="bottom">
@@ -192,10 +198,22 @@ export default {
                     }
                 }
             }
+        },
+        signReasonVisible: function(newvs, oldvs) {
+            //picker关闭没有回调函数，所以侦听该属性替代
+            if (newvs) {
+                this.closeTouch()
+            } else {
+                this.openTouch()
+            }
         }
     },
     data() {
         return {
+            closeOnClickModal:false,
+            handler: function(e){
+                e.preventDefault()
+            },
             subStatus: false, // 提交按钮
             telphone: '', // 手机号
             codetel: '', // 验证码
@@ -209,11 +227,11 @@ export default {
             doneWorkname: [], //曾经做过
             expectWorkname: [], // 期望工作
             workChoose: false,
-            pickerVisible: new Date('1 1,1990'), // 生日
+            pickerVisible: new Date('1990/1/1'), // 生日
             workVisible: new Date(), // 工作年份
             chooseWork: '',
             chooseBorth: '',
-            startDate: new Date('1 1,1950'),
+            startDate: new Date('1950/1/1'),
             title: '录简历赚钱',
             popupSex: false, // 性别选择
             choosedsex: {}, // 性别选择
@@ -319,19 +337,22 @@ export default {
                 sharer_id: localStorage.getItem('resumeId')
             }
             this.subStatus = true
-            this.$api.resumeDeliver(params).then(res => {
-                this.subStatus = false
-                console.log(res)
-                if (res.code === 0) {
-                    localStorage.setItem(
-                        'resumeBackData',
-                        JSON.stringify(res.data)
-                    )
-                    this.$router.replace({ name: 'submit-result' })
-                }
-            }).catch(err =>{
-                this.subStatus = false
-            })
+            this.$api
+                .resumeDeliver(params)
+                .then(res => {
+                    this.subStatus = false
+                    console.log(res)
+                    if (res.code === 0) {
+                        localStorage.setItem(
+                            'resumeBackData',
+                            JSON.stringify(res.data)
+                        )
+                        this.$router.replace({ name: 'submit-result' })
+                    }
+                })
+                .catch(err => {
+                    this.subStatus = false
+                })
         },
         testTel() {
             //校验手机号
@@ -420,30 +441,49 @@ export default {
             }
             this.$refs.getPosition.getParamsId()
         },
+        /*解决iphone页面层级相互影响滑动的问题*/
+        closeTouch() {
+            document
+                .getElementsByTagName('body')[0]
+                .addEventListener('touchmove', this.handler, { passive: false }) //阻止默认事件
+        },
+        openTouch(e) {
+            document
+                .getElementsByTagName('body')[0]
+                .removeEventListener('touchmove', this.handler, {
+                    passive: false
+                }) //打开默认事件
+        },
         handleConfirm() {
             //生日确认
+            this.openTouch();
             console.log(this.pickerVisible)
             this.chooseBorth = pulgin.getTime(this.pickerVisible)
         },
         handleConfirmWork() {
             //工作年份确认
-            console.log(this.workVisible.getFullYear())
+            this.openTouch();
             if (this.workVisible) {
                 this.chooseWork = this.workVisible.getFullYear().toString()
             }
         },
+        checkinCancel(){
+            this.openTouch();
+        },
         openDate() {
             // 打开日历
+            this.closeTouch();
             this.$refs.picker.open()
         },
         openDateWork() {
             // 打开参加工作年份
+            this.closeTouch();
             this.$refs.workPicker.open()
         },
         query() {
             //确定
             this.popupSex = false
-            console.log(this.chooseType)
+            this.openTouch();
             if (this.chooseType === 'sex') {
                 this.choosedsex = this.value
                 return
@@ -455,6 +495,7 @@ export default {
         },
         cancel() {
             //取消
+            this.openTouch();
             this.popupSex = false
         },
         onValuesChangeSex(picker, values) {
@@ -476,7 +517,8 @@ export default {
         chooseSex(value) {
             // 列表点击
             this.chooseType = value
-            this.popupSex = true
+            this.popupSex = true;
+            this.closeTouch();
         },
         goBack() {
             this.$router.push({ name: 'share-resume' })
