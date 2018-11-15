@@ -22,11 +22,7 @@ export default {
     mounted() {},
     methods: {
         goBack() {
-            if (os._android()) {
-                window.control.quitWebView()
-            } else if (os._ios()) {
-                window.webkit.messageHandlers.quitWebView.postMessage('')
-            }
+            this.$router.push({path:'/'})
         }
     }
 }

@@ -20,7 +20,7 @@ module.exports = merge(baseConfig, {
     mode: 'development',
     devServer: {
         host: ip,
-        port: 8090
+        port: 9275
     },
     output: {
         filename: '[name].js',
