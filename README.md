@@ -1,6 +1,7 @@
 # vue-resume
 基于的简历投递项目
-# 运行项目：npm install ---> npm run start
+# 运行项目：npm install ---> npm run start 
+# 多环境运行命令：npm run start -- --st1
 ## 若安装依赖不成功，安装淘宝镜像   npm install -g cnpm --registry=https://registry.npm.taobao.org
 
 ### 前言
